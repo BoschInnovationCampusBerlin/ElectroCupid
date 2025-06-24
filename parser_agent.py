@@ -211,20 +211,9 @@ import pandas as pd
 with open('bom_output/BOM.json', 'r', encoding='utf-8') as jf:
     data = json.load(jf)
 
-
-
-# Aggregate all unique keys across all JSON objects
-all_keys = sorted({key for record in data for key in record})
-
-print(all_keys)
-
-df = pd.json_normalize(data)
-
-# Select and reorder the desired columns
-df = df[all_keys]
-
-# Export to CSV without the DataFrame index
-df.to_csv('bom_output/BOM_columns_pandas.csv', index=False, encoding='utf-8')
+df = pd.DataFrame(data)
+df.to_csv('bom_output/output.csv', index=False) 
+          #sep=';')
 
 
 
