@@ -1,0 +1,8 @@
+services:
+  frontend:
+    container_name: electrocupid-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
