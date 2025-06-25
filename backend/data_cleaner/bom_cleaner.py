@@ -12,6 +12,7 @@ MPN_CANDIDATES = [
 ]
 ALT_CANDIDATES = ["Alternative", "Alt Part Number", "Alternativ", "Ersatzteil"]
 DESC_CANDIDATES = ["Description", "Beschreibung", "Desc"]
+QTY_CANDIDATES = ["Quantity", "Qty.", "Menge", "QTY", "QUANTITY", "Anzahl", "Stückzahl"]
 
 translator = Translator()
 
@@ -105,6 +106,8 @@ def translate_text(text, dest='en'):
         return text
 
 def clean_bom(df):
+    print("Initial columns:", df.columns.tolist())
+
     # Standardize MPN column
     mpn_col = find_column(df.columns, MPN_CANDIDATES)
     if not mpn_col:
@@ -114,18 +117,34 @@ def clean_bom(df):
     # Standardize alternative and description columns
     alt_col = find_column(df.columns, ALT_CANDIDATES)
     desc_col = find_column(df.columns, DESC_CANDIDATES)
+    
+    # Expanded list of quantity candidates
+    qty_candidates = [
+        "Quantity", "Qty", "Qty.", "QTY.", "QTY", "QUANTITY",
+        "Menge", "Anzahl", "Stückzahl", "qty", "quantity",
+        "Required Quantity", "Req Qty", "Qty Required"
+    ]
+    print("Looking for quantity in columns:", qty_candidates)
+    qty_col = find_column(df.columns, qty_candidates)
+    print("Found quantity column:", qty_col)
+
     if alt_col:
         df = df.rename(columns={alt_col: 'ALT'})
     if desc_col:
         df = df.rename(columns={desc_col: 'DESC'})
+    if qty_col:
+        df = df.rename(columns={qty_col: 'Quantity'})
+        print("Renamed quantity column to 'Quantity'")
+    else:
+        print("WARNING: No quantity column found!")
+
+    print("Columns after renaming:", df.columns.tolist())
 
     # Fill missing MPNs only from alternative, not from description
     for idx, row in df.iterrows():
         if pd.isna(row['MPN']) or str(row['MPN']).strip() == '':
-            # Try alternative
             if 'ALT' in df.columns and not pd.isna(row['ALT']):
                 df.at[idx, 'MPN'] = row['ALT']
-            # Do NOT use description to fill MPN
 
     # Save rows with missing MPNs before cleaning
     missing_mpn_df = df[df['MPN'].isna() | (df['MPN'].astype(str).str.strip() == '')].copy()
@@ -133,12 +152,27 @@ def clean_bom(df):
     # Clean and correct typos in MPN
     df['MPN'] = df['MPN'].apply(lambda x: correct_typos(x, KNOWN_PARTS))
 
-    # Translate descriptions to English
-    if 'DESC' in df.columns:
-        df['DESC_EN'] = df['DESC'].apply(lambda x: translate_text(x, dest='en'))
-
     # Drop irrelevant rows (e.g., all NaN in MPN)
     cleaned_df = df[df['MPN'].notna() & (df['MPN'].astype(str).str.strip() != '')].reset_index(drop=True)
+
+    print("Columns before final selection:", cleaned_df.columns.tolist())
+
+    # Make sure we keep Quantity column and ALT column
+    keep_cols = ['DESC', 'Quantity', 'MPN', 'ALT']
+    # Only keep columns that exist
+    keep_cols = [col for col in keep_cols if col in cleaned_df.columns]
+    print("Keeping these columns:", keep_cols)
+    
+    # Keep only the columns we want
+    cleaned_df = cleaned_df[keep_cols]
+
+    # Remove rows where MPN contains 'DDI' or 'cable' (case-insensitive)
+    cleaned_df = cleaned_df[~cleaned_df['MPN'].str.contains('DDI', case=False, na=False)]
+    cleaned_df = cleaned_df[~cleaned_df['MPN'].str.contains('cable', case=False, na=False)]
+    cleaned_df = cleaned_df.reset_index(drop=True)
+
+    print("Final columns:", cleaned_df.columns.tolist())
+
     return cleaned_df, missing_mpn_df
 
 def main():
@@ -164,29 +198,5 @@ def main():
     df_missing.to_csv(args.missing, index=False)
     print(f"Rows with missing MPN saved to {args.missing}")
 
-# if __name__ == '__main__':
-#     main() 
-
-def start_cleaner(input_file, output_file='backend\\api\\clean_output\\cleaned_bom.csv', missing_file='backend\\api\\clean_output\\cleaned_missing_bom.csv'):
-    """
-    Start the BOM cleaner as a script.
-    """
-
-
-    print(f"Reading: {input_file}")
-    df = read_bom(input_file)
-    print(f"Initial columns: {list(df.columns)}")
-    df_clean, df_missing = clean_bom(df)
-    print(f"Cleaned columns: {list(df_clean.columns)}")
-    # Ensure output directory exists
-    os.makedirs(os.path.dirname(output_file), exist_ok=True)
-    df_clean.to_csv(output_file, index=False)
-    print(f"Cleaned BOM saved to {output_file}")
-
-    # Generate missingMPN file name if not specified
-    if missing_file is None:
-        base, ext = os.path.splitext(input_file)
-        missing_file = f"{base}_missingMPN.csv"
-    df_missing.to_csv(missing_file, index=False)
-    print(f"Rows with missing MPN saved to {missing_file}")
-    return output_file, missing_file
+if __name__ == '__main__':
+    main() 
