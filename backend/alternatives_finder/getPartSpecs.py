@@ -1,224 +1,148 @@
 import os, sys
+import csv
+import json
 from nexarClient import NexarClient
 
 
+clientId = "724b870d-80a3-403c-a1fe-7d4dfe926ee7"
+clientSecret = "7yMg2aANL81GCJsvTTrh_g8uTOhpULDrBpCR"
 QUERY_MPN = '''
 query Search($mpn: String!) {
-    supSearchMpn(q: $mpn, limit: 2) {
+    supSearchMpn(q: $mpn, limit: 1) {
       results {
         part {
           mpn
           shortDescription
-          manufacturer {
+          manufacturer { name }
+          specs { attribute { name shortname } displayValue }
+          sellers { company { name } offers { prices { quantity price } } }
+          similarParts {
             name
+            octopartUrl
+            mpn
+            shortDescription
+            manufacturer { name }
+            specs { attribute { name shortname } displayValue }
+            sellers { company { name } offers { prices { quantity price } } }
           }
-          specs {
-            attribute {
-              name
-              shortname
-            }
-            displayValue
-          }
         }
       }
     }
   }
 '''
 
-QUERY_FREE_SEARCH = '''
-query FreeSearch($q: String!) {
-  supSearch(q: $q, limit: 1) {
-    results {
-      part {
-        id
-        name
-        mpn
-        medianPrice1000 {
-          quantity
-          currency
-        }
-        category {
-          id
-          name
-        }
-        manufacturer {
-          name
-          homepageUrl
-        }
-      }
-    }
-  }
-}
-'''
-
-QUERY_ALTERNATIVES = '''
-query Alternatives($mpn: String!) {
-  supSearchMpn(q: $mpn, limit: 1) {
-    results {
-      part {
-        similarParts {
-          name
-          octopartUrl
-          mpn
-        }
-      }
-    }
-  }
-}
-'''
-
-def get_part_info(mpn, nexar):
-    """
-    Given an MPN, return all attributes of the part using the working NexarClient method and response handling.
-    """
-    if not mpn:
-        return None
-    variables = {"mpn": mpn}
-    results = nexar.get_query(QUERY_MPN, variables)
-    # results is expected to be a dict with 'supSearchMpn' at the top level
-    parts = results.get('supSearchMpn', {}).get('results', [])
-    if not parts:
-        return None
-    part = parts[0].get('part', {})
-    attributes = []
-    for spec in part.get('specs', []):
-        attr = spec.get('attribute', {})
-        attributes.append({
-            'name': attr.get('name'),
-            'shortname': attr.get('shortname'),
-            'displayValue': spec.get('displayValue')
-        })
-    return {
-        'mpn': part.get('mpn'),
-        'shortDescription': part.get('shortDescription'),
-        'manufacturer': part.get('manufacturer', {}).get('name'),
-        'attributes': attributes
-    }
-
-
-def get_part_alternatives(mpn, nexar):
-    """
-    Given an MPN, return a list of alternative parts (similarParts) with their attributes.
-    """
-    if not mpn:
-        return None
-    variables = {"mpn": mpn}
-    response = nexar.get_query(QUERY_ALTERNATIVES, variables)
-    results = response.get('supSearchMpn', {}).get('results', [])
-    if not results:
-        return None
-    part = results[0].get('part', {})
-    alternatives = part.get('similarParts', [])
-    alternatives_with_attributes = []
-    for alt in alternatives:
-        alt_info = {
-            'name': alt.get('name'),
-            'octopartUrl': alt.get('octopartUrl'),
-            'mpn': alt.get('mpn'),
-            'attributes': None
-        }
-        part_info = get_part_info(alt.get('mpn'), nexar)
-        if part_info:
-            alt_info['attributes'] = part_info.get('attributes')
-        alternatives_with_attributes.append(alt_info)
-    return alternatives_with_attributes
-
-
-def get_part_by_free_search(search_term, nexar):
-    """
-    Given a free text search term, return the first matching part's attributes.
-    """
-    if not search_term:
-        return None
-    variables = {"q": search_term}
-    response = nexar.get_query(QUERY_FREE_SEARCH, variables)
-    results = response.get('supSearch', {}).get('results', [])
-    if not results:
-        return None
-    part = results[0].get('part', {})
-    return {
-        'id': part.get('id'),
-        'name': part.get('name'),
-        'mpn': part.get('mpn'),
-        'medianPrice1000': part.get('medianPrice1000'),
-        'category': part.get('category'),
-        'manufacturer': part.get('manufacturer')
-    }
 
 def get_part_info_and_alternatives(mpn=None, search_term=None, nexar=None):
     """
-    Returns a dict with part info and alternatives if mpn is given and found.
-    If not found and search_term is given, returns part info from free search (with attributes if possible).
+    Returns a dict with part info and alternatives using a single API call for the main part and its alternatives.
+    Only supports MPN-based lookup now.
     """
     if mpn:
-        part_info = get_part_info(mpn, nexar)
-        if part_info:
-            alternatives = get_part_alternatives(mpn, nexar)
-            return {
-                'part_info': part_info,
-                'alternatives': alternatives
-            }
-    if search_term:
-        part_info_free_search = get_part_by_free_search(search_term, nexar)
-        if part_info_free_search:
-            # Try to get full part info (with attributes) if MPN is available
-            mpn = part_info_free_search.get('mpn')
-            if mpn:
-                part_info = get_part_info(mpn, nexar)
-                if part_info:
-                    part_info_free_search['attributes'] = part_info.get('attributes')
-            return {'part_info_free_search': part_info_free_search}
+        variables = {"mpn": mpn}
+        results = nexar.get_query(QUERY_MPN, variables)
+        parts = results.get('supSearchMpn', {}).get('results', [])
+        if not parts:
+            return None
+        part = parts[0].get('part', {})
+        # Main part info
+        attributes = []
+        for spec in part.get('specs', []):
+            attr = spec.get('attribute', {})
+            attributes.append({
+                'name': attr.get('name'),
+                'shortname': attr.get('shortname'),
+                'displayValue': spec.get('displayValue')
+            })
+        prices = []
+        for seller in part.get('sellers', []):
+            company = seller.get('company', {}).get('name')
+            for offer in seller.get('offers', []):
+                for price_info in offer.get('prices', []):
+                    price_entry = {
+                        'company': company,
+                        'quantity': price_info.get('quantity'),
+                        'price': price_info.get('price')
+                    }
+                    prices.append(price_entry)
+        part_info = {
+            'mpn': part.get('mpn'),
+            'shortDescription': part.get('shortDescription'),
+            'manufacturer': part.get('manufacturer', {}).get('name'),
+            'attributes': attributes,
+            'prices': prices
+        }
+        # Alternatives
+        alternatives = []
+        for alt in part.get('similarParts', []):
+            alt_attributes = []
+            for spec in alt.get('specs', []):
+                attr = spec.get('attribute', {})
+                alt_attributes.append({
+                    'name': attr.get('name'),
+                    'shortname': attr.get('shortname'),
+                    'displayValue': spec.get('displayValue')
+                })
+            alt_prices = []
+            for seller in alt.get('sellers', []):
+                company = seller.get('company', {}).get('name')
+                for offer in seller.get('offers', []):
+                    for price_info in offer.get('prices', []):
+                        price_entry = {
+                            'company': company,
+                            'quantity': price_info.get('quantity'),
+                            'price': price_info.get('price')
+                        }
+                        alt_prices.append(price_entry)
+            alternatives.append({
+                'name': alt.get('name'),
+                'octopartUrl': alt.get('octopartUrl'),
+                'mpn': alt.get('mpn'),
+                'shortDescription': alt.get('shortDescription'),
+                'manufacturer': alt.get('manufacturer', {}).get('name'),
+                'attributes': alt_attributes,
+                'prices': alt_prices
+            })
+        return {
+            'part_info': part_info,
+            'alternatives': alternatives
+        }
+    # Only MPN-based lookup is supported in this optimized version
     return None
 
-""" if __name__ == '__main__':
-    clientId = os.environ['NEXAR_CLIENT_ID']
-    clientSecret = os.environ['NEXAR_CLIENT_SECRET']
-    nexar = NexarClient(clientId, clientSecret)
-    if len(sys.argv) < 2:
-        print("Usage: python getPartSpecs.py <MPN>")
-        sys.exit(1)
-    mpn = sys.argv[1]
-    part_info = get_part_info(mpn, nexar)
-    alternatives = get_part_alternatives(mpn, nexar)
-    search_term = input("Enter a search term for free search: ")
-    part_info_free_search = get_part_by_free_search(search_term, nexar)
-    if part_info:
-        print(f"MPN: {part_info['mpn']}")
-        print(f"Description: {part_info['shortDescription']}")
-        print(f"Manufacturer: {part_info['manufacturer']}")
-        print("Attributes:")
-        for attr in part_info['attributes']:
-            print(f"  {attr['name']} ({attr['shortname']}): {attr['displayValue']}")
-        if alternatives:
-            print("Alternative Parts:")
-            for alt in alternatives:
-                #print(f"  Name: {alt['name']}, MPN: {alt['mpn']}, URL: {alt['octopartUrl']}")
-                # print the attributes of each alternative part
-                print(f"  MPN: {alt['mpn']}")
-                print(f"  Description: {alt['name']}")
-                print(f"  Octopart URL: {alt['octopartUrl']}")
-                # Assuming alt has 'name', 'shortname', and 'displayValue' attributes
-                if 'displayValue' in alt:
-                    print(f"  Display Value: {alt['displayValue']}")
-                else:
-                    print("  No display value available.")
-                # Print the alternative part's attributes
-                if get_part_info(alt['mpn'], nexar):
-                    for attr in get_part_info(alt['mpn'], nexar)['attributes']:
-                        print(f"    {attr['name']} ({attr['shortname']}): {attr['displayValue']}")
-                else:
-                    print("  No attributes available for this alternative part.")
-                #print(f"  {alt['name']} ({alt['shortname']}): {alt['displayValue']}")
-    
+def get_mpn_from_csv(csv_path, mpn_column_name="mpn"):
+    """
+    Reads a CSV file, finds the MPN (Manufacturer Part Number) column, and returns a list of MPNs.
+    By default, looks for a column named 'mpn'.
+    """
+    mpns = []
+    with open(csv_path, newline='', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            mpn = row.get(mpn_column_name)
+            if mpn:
+                mpns.append(mpn)
+    return mpns
 
-    # Example usage of free search
-    elif part_info_free_search:
-        print(f"Part ID: {part_info_free_search['id']}")
-        print(f"Name: {part_info_free_search['name']}")
-        print(f"MPN: {part_info_free_search['mpn']}")
-        print(f"Median Price (1000): {part_info_free_search['medianPrice1000']}")
-        print(f"Category: {part_info_free_search['category']}")
-        print(f"Manufacturer: {part_info_free_search['manufacturer']}")
-    else:
-        print("No part found for the given search term.")
-        sys.exit(1) """
+
+nexar = NexarClient(clientId, clientSecret)
+
+mpns = get_mpn_from_csv('/Users/mbengamina/Downloads/output_comma.csv', mpn_column_name="manufacturer_part_number")
+""" for mpn in mpns:
+    result = get_part_info_and_alternatives(mpn=mpn, nexar=nexar)
+    print(result) """
+
+print(get_part_info_and_alternatives(mpn="LM358", search_term=None, nexar=nexar))
+
+# --- Save part_info and alternatives as separate JSON files ---
+lookup_result = get_part_info_and_alternatives(mpn="LM358", search_term=None, nexar=nexar)
+
+if lookup_result and 'part_info' in lookup_result:
+    part_info = lookup_result['part_info']
+    alternatives = lookup_result.get('alternatives', [])
+    with open('part_info.json', 'w', encoding='utf-8') as f:
+        json.dump(part_info, f, ensure_ascii=False, indent=2)
+    with open('alternatives.json', 'w', encoding='utf-8') as f:
+        json.dump(alternatives, f, ensure_ascii=False, indent=2)
+    print('Saved part_info.json and alternatives.json')
+else:
+    print('No part_info found to save.')
