@@ -36,13 +36,14 @@ def get_part_info_and_alternatives(mpn=None, search_term=None, nexar=None):
     """
     Returns a dict with part info and alternatives using a single API call for the main part and its alternatives.
     Only supports MPN-based lookup now.
+    Returns a tuple of (part_info_json, alternatives_json) as JSON strings, or (None, None) if not found.
     """
     if mpn:
         variables = {"mpn": mpn}
         results = nexar.get_query(QUERY_MPN, variables)
         parts = results.get('supSearchMpn', {}).get('results', [])
         if not parts:
-            return None
+            return None, None
         part = parts[0].get('part', {})
         # Main part info
         attributes = []
@@ -102,12 +103,18 @@ def get_part_info_and_alternatives(mpn=None, search_term=None, nexar=None):
                 'attributes': alt_attributes,
                 'prices': alt_prices
             })
-        return {
-            'part_info': part_info,
-            'alternatives': alternatives
-        }
-    # Only MPN-based lookup is supported in this optimized version
-    return None
+        part_info_json = json.dumps(part_info, ensure_ascii=False, indent=2)
+        alternatives_json = json.dumps(alternatives, ensure_ascii=False, indent=2)
+        return part_info_json, alternatives_json
+    # Only MPN-based lookup is supported in this version
+    return None, None
+
+
+
+nexar = NexarClient(clientId, clientSecret)
+
+lookup_result = get_part_info_and_alternatives(mpn="LM358", search_term=None, nexar=nexar)
+part_info_json, alternatives_json = lookup_result
 
 def get_mpn_from_csv(csv_path, mpn_column_name="mpn"):
     """
@@ -122,27 +129,17 @@ def get_mpn_from_csv(csv_path, mpn_column_name="mpn"):
             if mpn:
                 mpns.append(mpn)
     return mpns
-
-
-nexar = NexarClient(clientId, clientSecret)
-
-mpns = get_mpn_from_csv('/Users/mbengamina/Downloads/output_comma.csv', mpn_column_name="manufacturer_part_number")
+#mpns = get_mpn_from_csv('/Users/mbengamina/Downloads/output_comma.csv', mpn_column_name="manufacturer_part_number")
 """ for mpn in mpns:
     result = get_part_info_and_alternatives(mpn=mpn, nexar=nexar)
     print(result) """
 
-print(get_part_info_and_alternatives(mpn="LM358", search_term=None, nexar=nexar))
+#print(get_part_info_and_alternatives(mpn="LM358", search_term=None, nexar=nexar))
 
 # --- Save part_info and alternatives as separate JSON files ---
-lookup_result = get_part_info_and_alternatives(mpn="LM358", search_term=None, nexar=nexar)
 
-if lookup_result and 'part_info' in lookup_result:
-    part_info = lookup_result['part_info']
-    alternatives = lookup_result.get('alternatives', [])
-    with open('part_info.json', 'w', encoding='utf-8') as f:
-        json.dump(part_info, f, ensure_ascii=False, indent=2)
-    with open('alternatives.json', 'w', encoding='utf-8') as f:
-        json.dump(alternatives, f, ensure_ascii=False, indent=2)
-    print('Saved part_info.json and alternatives.json')
+""" if part_info_json and alternatives_json:
+    print('part_info_json:', part_info_json)
+    print('alternatives_json:', alternatives_json)
 else:
-    print('No part_info found to save.')
+    print('No part_info found to save.') """
