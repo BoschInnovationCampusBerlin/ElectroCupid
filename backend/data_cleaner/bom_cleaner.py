@@ -164,5 +164,29 @@ def main():
     df_missing.to_csv(args.missing, index=False)
     print(f"Rows with missing MPN saved to {args.missing}")
 
-if __name__ == '__main__':
-    main() 
+# if __name__ == '__main__':
+#     main() 
+
+def start_cleaner(input_file, output_file='backend\\api\\clean_output\\cleaned_bom.csv', missing_file='backend\\api\\clean_output\\cleaned_missing_bom.csv'):
+    """
+    Start the BOM cleaner as a script.
+    """
+
+
+    print(f"Reading: {input_file}")
+    df = read_bom(input_file)
+    print(f"Initial columns: {list(df.columns)}")
+    df_clean, df_missing = clean_bom(df)
+    print(f"Cleaned columns: {list(df_clean.columns)}")
+    # Ensure output directory exists
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
+    df_clean.to_csv(output_file, index=False)
+    print(f"Cleaned BOM saved to {output_file}")
+
+    # Generate missingMPN file name if not specified
+    if missing_file is None:
+        base, ext = os.path.splitext(input_file)
+        missing_file = f"{base}_missingMPN.csv"
+    df_missing.to_csv(missing_file, index=False)
+    print(f"Rows with missing MPN saved to {missing_file}")
+    return output_file, missing_file
