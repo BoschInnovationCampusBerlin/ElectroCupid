@@ -4,6 +4,7 @@ import shutil
 import os
 import uuid
 from fastapi.responses import FileResponse
+from backend.llm_recommendation.data_extractor import data_extractor
 
 app = FastAPI()
 
@@ -72,6 +73,11 @@ async def poll():
     is_ready = bool(optimized_bom and os.path.isfile(optimized_bom))
     return {"ready": is_ready}
 
+
+@app.post("/api/give_recommendations/")
+async def give_recommendations():
+    result = data_extractor()
+    return {"recommendations": result}
 
 if __name__ == "__main__":
     import uvicorn

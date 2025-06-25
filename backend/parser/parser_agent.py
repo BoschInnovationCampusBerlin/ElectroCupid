@@ -135,6 +135,6 @@ def parser_agent(csv: str = "cleaned_bom3.csv") -> None:
 
         df = pd.DataFrame(data)
         os.makedirs('backend\\api\\bom_output', exist_ok=True)
-        df.to_csv('backend\\api\\bom_output\\output.csv', index=False#) 
-                ,sep=';')
+        df.to_csv('backend\\api\\bom_output\\output.csv', index=False) 
+               # ,sep=';')
         return 'backend\\api\\bom_output\\output.csv'

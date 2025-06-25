@@ -1,7 +1,8 @@
 import os, sys
 import csv
 import json
-from nexarClient import NexarClient
+
+from backend.alternatives_finder.nexarClient import NexarClient
 
 
 clientId = "724b870d-80a3-403c-a1fe-7d4dfe926ee7"
@@ -32,7 +33,7 @@ query Search($mpn: String!) {
 '''
 
 
-def get_part_info_and_alternatives(mpn=None, search_term=None, nexar=None):
+def get_part_info_and_alternatives(mpn=None, search_term=None, nexar=NexarClient(clientId, clientSecret)):
     """
     Returns a dict with part info and alternatives using a single API call for the main part and its alternatives.
     Only supports MPN-based lookup now.
