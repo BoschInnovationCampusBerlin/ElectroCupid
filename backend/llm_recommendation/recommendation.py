@@ -11,7 +11,7 @@ from typing import List
 
 
 class ElectronicObject(BaseModel):
-    index: int
+    #index: int
     refdes: Optional[str]
     quantity: int
     description: str
@@ -76,9 +76,10 @@ def AIrecommender(
     print(f"Response content: {content}")
 
     # Write the JSON content to a file
-    output_path = "backend\\llm_recommendation/recommended_part.json"
-    with open(output_path, "w", encoding="utf-8") as outfile:
+    output_path = "backend\\llm_recommendation\\recommended_part.json"
+    with open(output_path, "a", encoding="utf-8") as outfile:
         outfile.write(content)
+        outfile.write(",\n")  # Add a comma and newline for separation
     # os.makedirs(output_dir, exist_ok=True)
     # with open(file_path, "a", encoding="utf-8") as f:
     #     f.write(content + ",\n")
@@ -132,9 +133,9 @@ def recommender_agent(json1, json2) -> None:
     #             ,sep=';')
     #     return 'backend\\api\\bom_output\\output.csv'
 #print("Current working directory:", os.getcwd())
-with open('backend\\llm_recommendation\\part_info1.json', 'r', encoding='utf-8') as f1:
-    json1 = f1.read()
+#with open('backend\\llm_recommendation\\part_info1.json', 'r', encoding='utf-8') as f1:
+#    json1 = f1.read()
 
-with open('backend\\llm_recommendation\\alternatives1.json', 'r', encoding='utf-8') as f2:
-    json2 = f2.read()
-recommender_agent(json1, json2)
+#with open('backend\\llm_recommendation\\alternatives1.json', 'r', encoding='utf-8') as f2:
+#    json2 = f2.read()
+#recommender_agent(json1, json2)
