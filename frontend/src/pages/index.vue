@@ -63,7 +63,7 @@ const onSubmit = async () => {
     return
   }
   const formData = new FormData()
-  formData.append('bom', bomFile.value)
+  formData.append('file', bomFile.value)
   formData.append('context', context.value)
   formData.append('quantity', String(quantity.value))
 
