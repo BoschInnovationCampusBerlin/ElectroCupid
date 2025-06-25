@@ -76,7 +76,7 @@ def AIrecommender(
     print(f"Response content: {content}")
 
     # Write the JSON content to a file
-    output_path = "llm_recommendation/recommended_part.json"
+    output_path = "backend\\llm_recommendation/recommended_part.json"
     with open(output_path, "w", encoding="utf-8") as outfile:
         outfile.write(content)
     # os.makedirs(output_dir, exist_ok=True)
@@ -132,9 +132,9 @@ def recommender_agent(json1, json2) -> None:
     #             ,sep=';')
     #     return 'backend\\api\\bom_output\\output.csv'
 #print("Current working directory:", os.getcwd())
-with open('llm_recommendation\\part_info.json', 'r', encoding='utf-8') as f1:
+with open('backend\\llm_recommendation\\part_info1.json', 'r', encoding='utf-8') as f1:
     json1 = f1.read()
 
-with open('llm_recommendation\\alternatives.json', 'r', encoding='utf-8') as f2:
+with open('backend\\llm_recommendation\\alternatives1.json', 'r', encoding='utf-8') as f2:
     json2 = f2.read()
 recommender_agent(json1, json2)
