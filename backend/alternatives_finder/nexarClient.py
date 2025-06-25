@@ -36,15 +36,18 @@ def decodeJWT(token):
     )
 
 class NexarClient:
-    def __init__(self, id, secret) -> None:
+    def __init__(self, id = None, secret = None, access_token = None) -> None:
         self.id = id
         self.secret = secret
         self.s = requests.session()
         self.s.keep_alive = False
 
-        self.token = get_token(id, secret)
-        self.s.headers.update({"token": self.token.get('access_token')})
-        self.exp = decodeJWT(self.token.get('access_token')).get('exp')
+        if access_token:
+            self.token = access_token
+        else:
+            self.token = get_token(self.id, self.secret)
+            self.s.headers.update({"token": self.token.get('access_token')})
+            self.exp = decodeJWT(self.token.get('access_token')).get('exp')
 
     def check_exp(self):
         if (self.exp < time.time() + 300):
@@ -55,7 +58,7 @@ class NexarClient:
     def get_query(self, query: str, variables: Dict) -> dict:
         """Return Nexar response for the query."""
         try:
-            self.check_exp()
+            #self.check_exp()
             r = self.s.post(
                 NEXAR_URL,
                 json={"query": query, "variables": variables},
