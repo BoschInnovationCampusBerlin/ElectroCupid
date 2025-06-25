@@ -98,7 +98,7 @@ def get_part_info(mpn, nexar):
 
 def get_part_alternatives(mpn, nexar):
     """
-    Given an MPN, return a list of alternative parts (similarParts).
+    Given an MPN, return a list of alternative parts (similarParts) with their attributes.
     """
     if not mpn:
         return None
@@ -109,9 +109,19 @@ def get_part_alternatives(mpn, nexar):
         return None
     part = results[0].get('part', {})
     alternatives = part.get('similarParts', [])
+    alternatives_with_attributes = []
     for alt in alternatives:
-        get_part_info(alt.get('mpn'), nexar)  # Ensure each alternative part is fetched
-    return alternatives
+        alt_info = {
+            'name': alt.get('name'),
+            'octopartUrl': alt.get('octopartUrl'),
+            'mpn': alt.get('mpn'),
+            'attributes': None
+        }
+        part_info = get_part_info(alt.get('mpn'), nexar)
+        if part_info:
+            alt_info['attributes'] = part_info.get('attributes')
+        alternatives_with_attributes.append(alt_info)
+    return alternatives_with_attributes
 
 
 def get_part_by_free_search(search_term, nexar):
@@ -138,17 +148,12 @@ def get_part_by_free_search(search_term, nexar):
 def get_part_info_and_alternatives(mpn=None, search_term=None, nexar=None):
     """
     Returns a dict with part info and alternatives if mpn is given and found.
-    If not found and search_term is given, returns part info from free search.
-    No printing, just returns the data.
+    If not found and search_term is given, returns part info from free search (with attributes if possible).
     """
     if mpn:
         part_info = get_part_info(mpn, nexar)
         if part_info:
             alternatives = get_part_alternatives(mpn, nexar)
-            #if alternatives:
-              #  alternatives_part_info = [get_part_info(alternative['mpn'], nexar) for alternative in alternatives]
-           # if alternatives_part_info:
-                
             return {
                 'part_info': part_info,
                 'alternatives': alternatives
@@ -156,6 +161,12 @@ def get_part_info_and_alternatives(mpn=None, search_term=None, nexar=None):
     if search_term:
         part_info_free_search = get_part_by_free_search(search_term, nexar)
         if part_info_free_search:
+            # Try to get full part info (with attributes) if MPN is available
+            mpn = part_info_free_search.get('mpn')
+            if mpn:
+                part_info = get_part_info(mpn, nexar)
+                if part_info:
+                    part_info_free_search['attributes'] = part_info.get('attributes')
             return {'part_info_free_search': part_info_free_search}
     return None
 
