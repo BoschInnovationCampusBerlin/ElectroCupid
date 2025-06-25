@@ -6,3 +6,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  backend:
+    container_name: electrocupid-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile

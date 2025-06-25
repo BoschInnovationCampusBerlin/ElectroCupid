@@ -68,7 +68,7 @@ const onSubmit = async () => {
   formData.append('quantity', String(quantity.value))
 
   try {
-    const response = await fetch('/api/submitBom', {
+    const response = await fetch('/api/upload-csv/', {
       method: 'POST',
       body: formData,
     })
