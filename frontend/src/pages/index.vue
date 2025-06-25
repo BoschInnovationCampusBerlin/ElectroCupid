@@ -52,11 +52,18 @@
         </v-btn>
       </v-form>
       <div v-if="pollError" class="mt-4 text-error">{{ pollError }}</div>
-      <div v-if="ready" class="mt-6 d-flex flex-column align-center">
-        <v-btn color="success" @click="downloadParsedBOM" variant="outlined">
-          Download parsed BOM
-        </v-btn>
-      </div>
+      <template v-if="ready">
+        <div  class="mt-6 d-flex flex-column align-center">
+          <v-btn color="success" @click="downloadParsedBOM" variant="outlined">
+            Download optimised BOM
+          </v-btn>
+        </div>
+        <div class="mt-6 d-flex flex-column align-center">
+          <v-btn color="success" @click="downloadRecomendedBOM" variant="outlined">
+            Download recomended BOM
+          </v-btn>
+        </div>
+      </template>
     </v-card>
   </v-container>
 </template>
@@ -73,6 +80,7 @@ const readonly = ref(false)
 const pollInterval = ref<number | null>(null)
 const pollError = ref<string | null>(null)
 const ready = ref(false)
+let waitCount = 0
 
 const resetForm = () => {
   bomFile.value = null
@@ -87,13 +95,15 @@ const pollForReady = async () => {
       if (!response.ok) {
         throw new Error('Polling failed')
       }
+      waitCount++
       const data = await response.json()
-      if (data.ready) {
+      if (data.ready || waitCount > 4) {
         ready.value = true
         clearInterval(pollInterval.value!)
         pollInterval.value = null
         loading.value = false
         readonly.value = false
+        waitCount = 0
       }
     } catch (error) {
       pollError.value = 'Error polling: ' + (error as Error).message
@@ -137,6 +147,14 @@ const onSubmit = async () => {
 }
 
 const downloadParsedBOM = () => {
-  window.location.href = '/api/parse/'
+  // window.location.href = '/api/download_optimized_bom/'
+  // TODO: here we just use a dummy
+  window.location.href = '/assets/optimised_bom.csv'
 }
+
+const downloadRecomendedBOM = () => {
+  // TODO: here we just use a dummy
+  window.location.href = '/assets/recomended_bom.csv'
+}
+
 </script>

@@ -8,6 +8,8 @@ services:
       - "8080:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./optimised_bom.csv:/usr/share/nginx/html/assets/optimised_bom.csv
+      - ./recomended_bom.csv:/usr/share/nginx/html/assets/recomended_bom.csv
   backend:
     container_name: electrocupid-backend
     build:

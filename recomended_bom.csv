@@ -1,0 +1,13 @@
+index,quantity,description,manufacturer_part_number,price,recommended_part_number,new_price
+0,1,100Mw Thick Film Resistors 100Ppm/ 1% 249K 0603 Chip Resistor Surface Mount Rohs,RC0603FR-07249KL,0.00093,,
+1,1,Resistor Thick Film 0603 10 Ohm 1% 1/10 Watt ±200ppm °C Surface Mount Paper Tape and Reel,NRC06F10R0TRF,0.0013,Yageo Group RC0603FR-0710R7L,0.00096
+2,1,Res Thick Film 0603 0 Ohm Pad SMD Automotive T/R,NRC06Z0TRF,0.0184,,
+3,1,Resistor Thick Film 0603 100 Ohm 5% 1/10 Watt ±200ppm °C Surface Mount Paper Tape and Reel,NRC06J101TRF,0.1,Yageo Group RC0603JR-13100RL,0.0008
+4,1,Res General Purpose Thick Film 0603 150 Ohm 5% 1/10W ±100ppm/°C Molded Paper T/R,RC0603JR-07150RL,0.0005,RC0603FR-07150RL,0.0005
+5,1,Resistor Thick Film 0603 300 Ohm 5% 1/10W 200ppm/C Molded SMD Paper T/R,NRC06J301TRF,0.0007,RK73B1JTTD301J,0.00111
+6,1,25V 1uF X5R ±20% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS,C1608X5R1E105M080AC,0.12,CC0603MRX5R8BB105,0.005
+7,1,"Multilayer Ceramic Capacitor, GRM Series, 0.1 - F, - 10%, X7R, 25 V, 0603 [1608 Metric]",GRM188R71E104KA01D,0.0028,CC0603KRX7R8BB104,0.001
+8,1,50V 10nF X7R ±10% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS,GRM188R71H103KA01D,0.00314,Yageo Group CC0603KPX7R9BB103,0.0009
+9,1,No part provided,,,,
+10,1,Switch Slide ON ON ON SP3T Top Slide 0.1A 12VDC 10000Cycles PC Pins Through Hole Bulk,OS103011MS8QP1,0.81,,
+11,1,Fuse Chip Very Fast Acting 4A 125V SMD Solder Pad 1206 Ceramic T/R,C1Q 5,,C1Q 5,0.042
