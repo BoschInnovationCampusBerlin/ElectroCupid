@@ -1,0 +1,1304 @@
+{
+  "mpn": "LM358APT",
+  "shortDescription": "LM358 Series 30 V 1.1 MHZ Low Power Dual Operational Amplifier - TSSOP-8",
+  "manufacturer": "STMicroelectronics",
+  "attributes": [
+    {
+      "name": "Bandwidth",
+      "shortname": "bandwidth",
+      "displayValue": "1.1 MHz"
+    },
+    {
+      "name": "Case/Package",
+      "shortname": "case_package",
+      "displayValue": "TSSOP"
+    },
+    {
+      "name": "Common Mode Rejection Ratio",
+      "shortname": "commonmoderejectionratio",
+      "displayValue": "70 dB"
+    },
+    {
+      "name": "Gain Bandwidth Product",
+      "shortname": "gainbandwidthproduct",
+      "displayValue": "1.1 MHz"
+    },
+    {
+      "name": "Input Bias Current",
+      "shortname": "inputbiascurrent",
+      "displayValue": "150 nA"
+    },
+    {
+      "name": "Input Offset Voltage (Vos)",
+      "shortname": "inputoffsetvoltage_vos_",
+      "displayValue": "7 mV"
+    },
+    {
+      "name": "Lead Free",
+      "shortname": "leadfree",
+      "displayValue": "Lead Free"
+    },
+    {
+      "name": "Lifecycle Status",
+      "shortname": "lifecyclestatus",
+      "displayValue": "Production (Last Updated: 5 years ago)"
+    },
+    {
+      "name": "Max Dual Supply Voltage",
+      "shortname": "maxdualsupplyvoltage",
+      "displayValue": "15 V"
+    },
+    {
+      "name": "Max Operating Temperature",
+      "shortname": "maxoperatingtemperature",
+      "displayValue": "70 °C"
+    },
+    {
+      "name": "Max Supply Current",
+      "shortname": "maxsupplycurrent",
+      "displayValue": "600 µA"
+    },
+    {
+      "name": "Max Supply Voltage",
+      "shortname": "maxsupplyvoltage",
+      "displayValue": "32 V"
+    },
+    {
+      "name": "Min Dual Supply Voltage",
+      "shortname": "mindualsupplyvoltage",
+      "displayValue": "1.5 V"
+    },
+    {
+      "name": "Min Operating Temperature",
+      "shortname": "minoperatingtemperature",
+      "displayValue": "0 °C"
+    },
+    {
+      "name": "Min Supply Voltage",
+      "shortname": "minsupplyvoltage",
+      "displayValue": "3 V"
+    },
+    {
+      "name": "Mount",
+      "shortname": "mount",
+      "displayValue": "Surface Mount  "
+    },
+    {
+      "name": "Nominal Supply Current",
+      "shortname": "nominalsupplycurrent",
+      "displayValue": "350 µA"
+    },
+    {
+      "name": "Number of Channels",
+      "shortname": "numberofchannels",
+      "displayValue": "2"
+    },
+    {
+      "name": "Number of Circuits",
+      "shortname": "numberofcircuits",
+      "displayValue": "2"
+    },
+    {
+      "name": "Number of Elements",
+      "shortname": "numberofelements",
+      "displayValue": "2"
+    },
+    {
+      "name": "Number of Pins",
+      "shortname": "numberofpins",
+      "displayValue": "8"
+    },
+    {
+      "name": "Operating Supply Current",
+      "shortname": "operatingsupplycurrent",
+      "displayValue": "700 µA"
+    },
+    {
+      "name": "Operating Supply Voltage",
+      "shortname": "operatingsupplyvoltage",
+      "displayValue": "15 V"
+    },
+    {
+      "name": "Output Current",
+      "shortname": "outputcurrent",
+      "displayValue": "60 mA"
+    },
+    {
+      "name": "Output Current per Channel",
+      "shortname": "outputcurrentperchannel",
+      "displayValue": "60 mA"
+    },
+    {
+      "name": "Packaging",
+      "shortname": "packaging",
+      "displayValue": "Tape and Reel"
+    },
+    {
+      "name": "Radiation Hardening",
+      "shortname": "radiationhardening",
+      "displayValue": "No"
+    },
+    {
+      "name": "RoHS",
+      "shortname": "rohs",
+      "displayValue": "Compliant"
+    },
+    {
+      "name": "Slew Rate",
+      "shortname": "slewrate",
+      "displayValue": "0.6 V/µs"
+    },
+    {
+      "name": "Voltage Gain",
+      "shortname": "voltagegain",
+      "displayValue": "100 dB"
+    }
+  ],
+  "prices": [
+    {
+      "company": "Arrow Electronics",
+      "quantity": 4000,
+      "price": 0.3349
+    },
+    {
+      "company": "Arrow Electronics",
+      "quantity": 8000,
+      "price": 0.3315
+    },
+    {
+      "company": "Arrow Electronics",
+      "quantity": 12000,
+      "price": 0.3282
+    },
+    {
+      "company": "Arrow Electronics",
+      "quantity": 20000,
+      "price": 0.3249
+    },
+    {
+      "company": "Arrow Electronics",
+      "quantity": 28000,
+      "price": 0.3217
+    },
+    {
+      "company": "Arrow Electronics",
+      "quantity": 4000,
+      "price": 0.1709
+    },
+    {
+      "company": "Arrow Electronics",
+      "quantity": 8000,
+      "price": 0.1686
+    },
+    {
+      "company": "Arrow Electronics",
+      "quantity": 12000,
+      "price": 0.1675
+    },
+    {
+      "company": "Verical",
+      "quantity": 4000,
+      "price": 0.1717
+    },
+    {
+      "company": "Verical",
+      "quantity": 4000,
+      "price": 0.3349
+    },
+    {
+      "company": "Verical",
+      "quantity": 8000,
+      "price": 0.3315
+    },
+    {
+      "company": "Verical",
+      "quantity": 12000,
+      "price": 0.3282
+    },
+    {
+      "company": "Verical",
+      "quantity": 20000,
+      "price": 0.3249
+    },
+    {
+      "company": "Verical",
+      "quantity": 28000,
+      "price": 0.3217
+    },
+    {
+      "company": "Mouser",
+      "quantity": 1,
+      "price": 0.78
+    },
+    {
+      "company": "Mouser",
+      "quantity": 10,
+      "price": 0.575
+    },
+    {
+      "company": "Mouser",
+      "quantity": 25,
+      "price": 0.451
+    },
+    {
+      "company": "Mouser",
+      "quantity": 50,
+      "price": 0.451
+    },
+    {
+      "company": "Mouser",
+      "quantity": 100,
+      "price": 0.387
+    },
+    {
+      "company": "Mouser",
+      "quantity": 250,
+      "price": 0.346
+    },
+    {
+      "company": "Mouser",
+      "quantity": 500,
+      "price": 0.345
+    },
+    {
+      "company": "Mouser",
+      "quantity": 1000,
+      "price": 0.345
+    },
+    {
+      "company": "Mouser",
+      "quantity": 4000,
+      "price": 0.344
+    },
+    {
+      "company": "Mouser",
+      "quantity": 10000,
+      "price": 0.344
+    },
+    {
+      "company": "DigiKey",
+      "quantity": 1,
+      "price": 0.81
+    },
+    {
+      "company": "DigiKey",
+      "quantity": 10,
+      "price": 0.581
+    },
+    {
+      "company": "DigiKey",
+      "quantity": 25,
+      "price": 0.5224
+    },
+    {
+      "company": "DigiKey",
+      "quantity": 100,
+      "price": 0.4584
+    },
+    {
+      "company": "DigiKey",
+      "quantity": 250,
+      "price": 0.42792
+    },
+    {
+      "company": "DigiKey",
+      "quantity": 500,
+      "price": 0.4095
+    },
+    {
+      "company": "DigiKey",
+      "quantity": 1000,
+      "price": 0.39436
+    },
+    {
+      "company": "DigiKey",
+      "quantity": 1,
+      "price": 0.81
+    },
+    {
+      "company": "DigiKey",
+      "quantity": 10,
+      "price": 0.581
+    },
+    {
+      "company": "DigiKey",
+      "quantity": 25,
+      "price": 0.5224
+    },
+    {
+      "company": "DigiKey",
+      "quantity": 100,
+      "price": 0.4584
+    },
+    {
+      "company": "DigiKey",
+      "quantity": 250,
+      "price": 0.42792
+    },
+    {
+      "company": "DigiKey",
+      "quantity": 500,
+      "price": 0.4095
+    },
+    {
+      "company": "DigiKey",
+      "quantity": 1000,
+      "price": 0.39436
+    },
+    {
+      "company": "DigiKey",
+      "quantity": 4000,
+      "price": 0.37162
+    },
+    {
+      "company": "DigiKey",
+      "quantity": 8000,
+      "price": 0.36317
+    },
+    {
+      "company": "DigiKey",
+      "quantity": 12000,
+      "price": 0.35894
+    },
+    {
+      "company": "DigiKey",
+      "quantity": 20000,
+      "price": 0.35425
+    },
+    {
+      "company": "DigiKey",
+      "quantity": 28000,
+      "price": 0.35151
+    },
+    {
+      "company": "Rochester Electronics",
+      "quantity": 100,
+      "price": 0.1
+    },
+    {
+      "company": "Rochester Electronics",
+      "quantity": 500,
+      "price": 0.09
+    },
+    {
+      "company": "Rochester Electronics",
+      "quantity": 1000,
+      "price": 0.083
+    },
+    {
+      "company": "Rochester Electronics",
+      "quantity": 10000,
+      "price": 0.074
+    },
+    {
+      "company": "Rochester Electronics",
+      "quantity": 100000,
+      "price": 0.062
+    },
+    {
+      "company": "TME",
+      "quantity": 1,
+      "price": 0.16
+    },
+    {
+      "company": "TME",
+      "quantity": 10,
+      "price": 0.138
+    },
+    {
+      "company": "TME",
+      "quantity": 25,
+      "price": 0.127
+    },
+    {
+      "company": "TME",
+      "quantity": 100,
+      "price": 0.122
+    },
+    {
+      "company": "TME",
+      "quantity": 250,
+      "price": 0.116
+    },
+    {
+      "company": "Newark",
+      "quantity": 5,
+      "price": 0.793
+    },
+    {
+      "company": "Newark",
+      "quantity": 10,
+      "price": 0.604
+    },
+    {
+      "company": "Newark",
+      "quantity": 25,
+      "price": 0.49
+    },
+    {
+      "company": "Newark",
+      "quantity": 50,
+      "price": 0.413
+    },
+    {
+      "company": "Newark",
+      "quantity": 100,
+      "price": 0.345
+    },
+    {
+      "company": "Newark",
+      "quantity": 250,
+      "price": 0.292
+    },
+    {
+      "company": "Newark",
+      "quantity": 500,
+      "price": 0.24
+    },
+    {
+      "company": "Future Electronics",
+      "quantity": 4000,
+      "price": 0.103
+    },
+    {
+      "company": "Future Electronics",
+      "quantity": 8000,
+      "price": 0.101
+    },
+    {
+      "company": "Future Electronics",
+      "quantity": 12000,
+      "price": 0.0999
+    },
+    {
+      "company": "Future Electronics",
+      "quantity": 16000,
+      "price": 0.0991
+    },
+    {
+      "company": "Future Electronics",
+      "quantity": 20000,
+      "price": 0.0969
+    },
+    {
+      "company": "Avnet",
+      "quantity": 8000,
+      "price": 0.0981
+    },
+    {
+      "company": "Avnet",
+      "quantity": 16000,
+      "price": 0.09748
+    },
+    {
+      "company": "Avnet",
+      "quantity": 24000,
+      "price": 0.09568
+    },
+    {
+      "company": "Avnet",
+      "quantity": 40000,
+      "price": 0.09394
+    },
+    {
+      "company": "Avnet",
+      "quantity": 80000,
+      "price": 0.09226
+    },
+    {
+      "company": "element14 APAC",
+      "quantity": 5,
+      "price": 1.03
+    },
+    {
+      "company": "element14 APAC",
+      "quantity": 10,
+      "price": 0.594
+    },
+    {
+      "company": "element14 APAC",
+      "quantity": 100,
+      "price": 0.45
+    },
+    {
+      "company": "element14 APAC",
+      "quantity": 500,
+      "price": 0.447
+    },
+    {
+      "company": "element14 APAC",
+      "quantity": 1000,
+      "price": 0.446
+    },
+    {
+      "company": "element14 APAC",
+      "quantity": 5000,
+      "price": 0.437
+    },
+    {
+      "company": "element14 APAC",
+      "quantity": 10000,
+      "price": 0.428
+    },
+    {
+      "company": "element14 APAC",
+      "quantity": 100,
+      "price": 0.45
+    },
+    {
+      "company": "element14 APAC",
+      "quantity": 500,
+      "price": 0.447
+    },
+    {
+      "company": "element14 APAC",
+      "quantity": 1000,
+      "price": 0.446
+    },
+    {
+      "company": "element14 APAC",
+      "quantity": 5000,
+      "price": 0.437
+    },
+    {
+      "company": "element14 APAC",
+      "quantity": 10000,
+      "price": 0.428
+    },
+    {
+      "company": "Farnell",
+      "quantity": 5,
+      "price": 0.639
+    },
+    {
+      "company": "Farnell",
+      "quantity": 10,
+      "price": 0.471
+    },
+    {
+      "company": "Farnell",
+      "quantity": 100,
+      "price": 0.317
+    },
+    {
+      "company": "Farnell",
+      "quantity": 500,
+      "price": 0.261
+    },
+    {
+      "company": "Farnell",
+      "quantity": 1000,
+      "price": 0.26
+    },
+    {
+      "company": "Farnell",
+      "quantity": 5000,
+      "price": 0.259
+    },
+    {
+      "company": "Farnell",
+      "quantity": 100,
+      "price": 0.317
+    },
+    {
+      "company": "Farnell",
+      "quantity": 500,
+      "price": 0.261
+    },
+    {
+      "company": "Farnell",
+      "quantity": 1000,
+      "price": 0.26
+    },
+    {
+      "company": "Farnell",
+      "quantity": 5000,
+      "price": 0.259
+    },
+    {
+      "company": "Anglia",
+      "quantity": 1,
+      "price": 0.05928
+    },
+    {
+      "company": "Anglia",
+      "quantity": 4001,
+      "price": 0.05379
+    },
+    {
+      "company": "Anglia",
+      "quantity": 8001,
+      "price": 0.04841
+    },
+    {
+      "company": "ICPartonline",
+      "quantity": 1,
+      "price": 0.09625
+    },
+    {
+      "company": "ICPartonline",
+      "quantity": 10,
+      "price": 0.09144
+    },
+    {
+      "company": "ICPartonline",
+      "quantity": 100,
+      "price": 0.08663
+    },
+    {
+      "company": "ICPartonline",
+      "quantity": 1000,
+      "price": 0.08181
+    },
+    {
+      "company": "ICPartonline",
+      "quantity": 10000,
+      "price": 0.077
+    },
+    {
+      "company": "Worldway Electronics",
+      "quantity": 2,
+      "price": 0.0898
+    },
+    {
+      "company": "Worldway Electronics",
+      "quantity": 10,
+      "price": 0.088
+    },
+    {
+      "company": "Worldway Electronics",
+      "quantity": 100,
+      "price": 0.0853
+    },
+    {
+      "company": "Worldway Electronics",
+      "quantity": 500,
+      "price": 0.0827
+    },
+    {
+      "company": "Worldway Electronics",
+      "quantity": 1000,
+      "price": 0.0809
+    },
+    {
+      "company": "Heisener Electronics",
+      "quantity": 1,
+      "price": 1.0664
+    },
+    {
+      "company": "NetSource Technology",
+      "quantity": 1,
+      "price": 0.15
+    },
+    {
+      "company": "Esaler Electronic",
+      "quantity": 1,
+      "price": 0.85
+    },
+    {
+      "company": "Esaler Electronic",
+      "quantity": 10,
+      "price": 0.842
+    },
+    {
+      "company": "Esaler Electronic",
+      "quantity": 100,
+      "price": 0.834
+    },
+    {
+      "company": "Esaler Electronic",
+      "quantity": 1000,
+      "price": 0.826
+    },
+    {
+      "company": "Esaler Electronic",
+      "quantity": 10000,
+      "price": 0.818
+    },
+    {
+      "company": "RX Electronics Limited",
+      "quantity": 10,
+      "price": 0.462
+    },
+    {
+      "company": "RX Electronics Limited",
+      "quantity": 100,
+      "price": 0.369
+    },
+    {
+      "company": "RX Electronics Limited",
+      "quantity": 1000,
+      "price": 0.326
+    },
+    {
+      "company": "RX Electronics Limited",
+      "quantity": 10000,
+      "price": 0.326
+    },
+    {
+      "company": "Fmall Co., Limited",
+      "quantity": 1,
+      "price": 0.3086
+    },
+    {
+      "company": "Fmall Co., Limited",
+      "quantity": 100,
+      "price": 0.2887
+    },
+    {
+      "company": "Fmall Co., Limited",
+      "quantity": 1000,
+      "price": 0.2721
+    },
+    {
+      "company": "Fmall Co., Limited",
+      "quantity": 10000,
+      "price": 0.2489
+    },
+    {
+      "company": "Corohmni",
+      "quantity": 1,
+      "price": 0.067
+    },
+    {
+      "company": "Ampacity Systems",
+      "quantity": 1,
+      "price": 0.146
+    },
+    {
+      "company": "Aztech",
+      "quantity": 1,
+      "price": 2.52154
+    },
+    {
+      "company": "LCSC",
+      "quantity": 5,
+      "price": 1.5103
+    },
+    {
+      "company": "LCSC",
+      "quantity": 5,
+      "price": 0.1839
+    },
+    {
+      "company": "LCSC",
+      "quantity": 5,
+      "price": 1.6487
+    },
+    {
+      "company": "LCSC",
+      "quantity": 5,
+      "price": 0.2066
+    },
+    {
+      "company": "LCSC",
+      "quantity": 50,
+      "price": 1.2142
+    },
+    {
+      "company": "LCSC",
+      "quantity": 50,
+      "price": 0.1479
+    },
+    {
+      "company": "LCSC",
+      "quantity": 50,
+      "price": 1.3255
+    },
+    {
+      "company": "LCSC",
+      "quantity": 50,
+      "price": 0.1661
+    },
+    {
+      "company": "LCSC",
+      "quantity": 150,
+      "price": 1.087
+    },
+    {
+      "company": "LCSC",
+      "quantity": 150,
+      "price": 0.1324
+    },
+    {
+      "company": "LCSC",
+      "quantity": 150,
+      "price": 1.1867
+    },
+    {
+      "company": "LCSC",
+      "quantity": 150,
+      "price": 0.1487
+    },
+    {
+      "company": "LCSC",
+      "quantity": 500,
+      "price": 0.9291
+    },
+    {
+      "company": "LCSC",
+      "quantity": 500,
+      "price": 0.1132
+    },
+    {
+      "company": "LCSC",
+      "quantity": 500,
+      "price": 1.0143
+    },
+    {
+      "company": "LCSC",
+      "quantity": 500,
+      "price": 0.1271
+    },
+    {
+      "company": "LCSC",
+      "quantity": 2500,
+      "price": 0.859
+    },
+    {
+      "company": "LCSC",
+      "quantity": 2500,
+      "price": 0.1046
+    },
+    {
+      "company": "LCSC",
+      "quantity": 2500,
+      "price": 0.9377
+    },
+    {
+      "company": "LCSC",
+      "quantity": 2500,
+      "price": 0.1175
+    },
+    {
+      "company": "LCSC",
+      "quantity": 4000,
+      "price": 0.8166
+    },
+    {
+      "company": "LCSC",
+      "quantity": 4000,
+      "price": 0.0995
+    },
+    {
+      "company": "LCSC",
+      "quantity": 4000,
+      "price": 0.8914
+    },
+    {
+      "company": "LCSC",
+      "quantity": 4000,
+      "price": 0.1117
+    },
+    {
+      "company": "Chipsmall Limited",
+      "quantity": 1,
+      "price": 0.2625
+    },
+    {
+      "company": "Chipsmall Limited",
+      "quantity": 10,
+      "price": 0.175
+    },
+    {
+      "company": "Chipsmall Limited",
+      "quantity": 100,
+      "price": 0.105
+    },
+    {
+      "company": "Chipsmall Limited",
+      "quantity": 500,
+      "price": 0.09625
+    },
+    {
+      "company": "Chipsmall Limited",
+      "quantity": 1000,
+      "price": 0.0875
+    },
+    {
+      "company": "RC Electronics",
+      "quantity": 1,
+      "price": 0.495
+    },
+    {
+      "company": "RC Electronics",
+      "quantity": 10,
+      "price": 0.45
+    },
+    {
+      "company": "RC Electronics",
+      "quantity": 100,
+      "price": 0.44
+    },
+    {
+      "company": "RC Electronics",
+      "quantity": 1000,
+      "price": 0.42
+    },
+    {
+      "company": "RC Electronics",
+      "quantity": 10000,
+      "price": 0.41
+    },
+    {
+      "company": "Suntronic",
+      "quantity": 10,
+      "price": 0.435
+    },
+    {
+      "company": "Suntronic",
+      "quantity": 100,
+      "price": 0.347
+    },
+    {
+      "company": "Suntronic",
+      "quantity": 1000,
+      "price": 0.307
+    },
+    {
+      "company": "Suntronic",
+      "quantity": 10000,
+      "price": 0.307
+    },
+    {
+      "company": "SHENGYU ELECTRONICS",
+      "quantity": 1,
+      "price": 0.8928
+    },
+    {
+      "company": "SHENGYU ELECTRONICS",
+      "quantity": 10,
+      "price": 0.8749
+    },
+    {
+      "company": "SHENGYU ELECTRONICS",
+      "quantity": 100,
+      "price": 0.8482
+    },
+    {
+      "company": "SHENGYU ELECTRONICS",
+      "quantity": 1000,
+      "price": 0.8214
+    },
+    {
+      "company": "SHENGYU ELECTRONICS",
+      "quantity": 10000,
+      "price": 0.7857
+    },
+    {
+      "company": "Bettlink",
+      "quantity": 1,
+      "price": 0.38752
+    },
+    {
+      "company": "Bettlink",
+      "quantity": 10,
+      "price": 0.35228
+    },
+    {
+      "company": "Bettlink",
+      "quantity": 100,
+      "price": 0.3232
+    },
+    {
+      "company": "Bettlink",
+      "quantity": 1000,
+      "price": 0.27968
+    },
+    {
+      "company": "Bettlink",
+      "quantity": 10000,
+      "price": 0.26385
+    },
+    {
+      "company": "Semicontronic",
+      "quantity": 1,
+      "price": 0.067
+    },
+    {
+      "company": "Semicontronic",
+      "quantity": 10,
+      "price": 0.06566
+    },
+    {
+      "company": "Semicontronic",
+      "quantity": 100,
+      "price": 0.06533
+    },
+    {
+      "company": "Semicontronic",
+      "quantity": 1000,
+      "price": 0.06499
+    },
+    {
+      "company": "Lixinc",
+      "quantity": 1,
+      "price": 0.5
+    },
+    {
+      "company": "Lixinc",
+      "quantity": 4000,
+      "price": 0.11764
+    },
+    {
+      "company": "Cytech Systems",
+      "quantity": 1,
+      "price": 1.176
+    },
+    {
+      "company": "Cytech Systems",
+      "quantity": 10,
+      "price": 1.1054
+    },
+    {
+      "company": "Cytech Systems",
+      "quantity": 100,
+      "price": 1.0466
+    },
+    {
+      "company": "Cytech Systems",
+      "quantity": 1000,
+      "price": 0.9878
+    },
+    {
+      "company": "Cytech Systems",
+      "quantity": 10000,
+      "price": 0.929
+    },
+    {
+      "company": "Vigor Components",
+      "quantity": 1,
+      "price": 0.5
+    },
+    {
+      "company": "YIC International",
+      "quantity": 1,
+      "price": 0.106
+    },
+    {
+      "company": "YIC International",
+      "quantity": 10,
+      "price": 0.106
+    },
+    {
+      "company": "YIC International",
+      "quantity": 100,
+      "price": 0.106
+    },
+    {
+      "company": "YIC International",
+      "quantity": 1000,
+      "price": 0.106
+    },
+    {
+      "company": "YIC International",
+      "quantity": 8000,
+      "price": 0.099
+    },
+    {
+      "company": "YIC International",
+      "quantity": 12000,
+      "price": 0.093
+    },
+    {
+      "company": "YIC International",
+      "quantity": 28000,
+      "price": 0.085
+    },
+    {
+      "company": "Origin Data Global Limited",
+      "quantity": 54,
+      "price": 0.778
+    },
+    {
+      "company": "Origin Data Global Limited",
+      "quantity": 100,
+      "price": 0.722
+    },
+    {
+      "company": "Origin Data Global Limited",
+      "quantity": 1000,
+      "price": 0.694
+    },
+    {
+      "company": "Origin Data Global Limited",
+      "quantity": 10000,
+      "price": 0.667
+    },
+    {
+      "company": "Quest",
+      "quantity": 1,
+      "price": 0.792
+    },
+    {
+      "company": "Quest",
+      "quantity": 7,
+      "price": 0.6336
+    },
+    {
+      "company": "Quest",
+      "quantity": 33,
+      "price": 0.396
+    },
+    {
+      "company": "Quest",
+      "quantity": 153,
+      "price": 0.2376
+    },
+    {
+      "company": "Quest",
+      "quantity": 843,
+      "price": 0.2059
+    },
+    {
+      "company": "Utmel Electronic",
+      "quantity": 1,
+      "price": 0.34084
+    },
+    {
+      "company": "Utmel Electronic",
+      "quantity": 10,
+      "price": 0.32154
+    },
+    {
+      "company": "Utmel Electronic",
+      "quantity": 100,
+      "price": 0.30334
+    },
+    {
+      "company": "Utmel Electronic",
+      "quantity": 500,
+      "price": 0.28617
+    },
+    {
+      "company": "Utmel Electronic",
+      "quantity": 1000,
+      "price": 0.26997
+    },
+    {
+      "company": "Lingto Electronic Ltd.",
+      "quantity": 1,
+      "price": 0.5
+    },
+    {
+      "company": "Lingto Electronic Ltd.",
+      "quantity": 10,
+      "price": 0.48
+    },
+    {
+      "company": "Lingto Electronic Ltd.",
+      "quantity": 100,
+      "price": 0.45
+    },
+    {
+      "company": "Lingto Electronic Ltd.",
+      "quantity": 1000,
+      "price": 0.445
+    },
+    {
+      "company": "Lingto Electronic Ltd.",
+      "quantity": 10000,
+      "price": 0.44
+    },
+    {
+      "company": "Chip One Stop Global",
+      "quantity": 4000,
+      "price": 2.6442
+    },
+    {
+      "company": "Chip One Stop Global",
+      "quantity": 4000,
+      "price": 0.0723
+    },
+    {
+      "company": "Chip One Stop Global",
+      "quantity": 4000,
+      "price": 51.6
+    },
+    {
+      "company": "Chip One Stop Global",
+      "quantity": 4000,
+      "price": 0.0831
+    },
+    {
+      "company": "Chip One Stop Global",
+      "quantity": 8000,
+      "price": 2.4069
+    },
+    {
+      "company": "Chip One Stop Global",
+      "quantity": 8000,
+      "price": 47.1
+    },
+    {
+      "company": "Chip One Stop Global",
+      "quantity": 12000,
+      "price": 0.80343
+    },
+    {
+      "company": "Chip One Stop Global",
+      "quantity": 12000,
+      "price": 0.065
+    },
+    {
+      "company": "Chip One Stop Global",
+      "quantity": 12000,
+      "price": 14.3
+    },
+    {
+      "company": "Chip One Stop Global",
+      "quantity": 12000,
+      "price": 0.0747
+    },
+    {
+      "company": "Chip One Stop Global",
+      "quantity": 20000,
+      "price": 0.791
+    },
+    {
+      "company": "Chip One Stop Global",
+      "quantity": 20000,
+      "price": 0.0645
+    },
+    {
+      "company": "Chip One Stop Global",
+      "quantity": 20000,
+      "price": 14.1
+    },
+    {
+      "company": "Chip One Stop Global",
+      "quantity": 20000,
+      "price": 0.0741
+    },
+    {
+      "company": "Chip One Stop Global",
+      "quantity": 40000,
+      "price": 0.77066
+    },
+    {
+      "company": "Chip One Stop Global",
+      "quantity": 40000,
+      "price": 13.7
+    },
+    {
+      "company": "Chip One Stop Global",
+      "quantity": 52000,
+      "price": 0.0635
+    },
+    {
+      "company": "Chip One Stop Global",
+      "quantity": 52000,
+      "price": 0.073
+    },
+    {
+      "company": "Chip One Stop Global",
+      "quantity": 100000,
+      "price": 0.0625
+    },
+    {
+      "company": "Chip One Stop Global",
+      "quantity": 100000,
+      "price": 0.0718
+    }
+  ]
+}

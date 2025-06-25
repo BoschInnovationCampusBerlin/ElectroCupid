@@ -23,7 +23,7 @@ def secure_filename(filename: str) -> str:
     unique_name = f"{uuid.uuid4().hex}_{name}"
     return unique_name
 
-@app.post("/upload-csv/")
+@app.post("/api/upload-csv/")
 async def upload_csv(file: UploadFile = File(...)):
     if not (file.filename.lower().endswith('.csv') or file.filename.lower().endswith('.xlsx')):
         raise HTTPException(status_code=400, detail="Only CSV or XLSX files are allowed.")
@@ -38,7 +38,7 @@ async def upload_csv(file: UploadFile = File(...)):
     app.state.last_uploaded_filename = os.path.join(UPLOAD_DIR, safe_filename)
     return {"filename": safe_filename, "message": "File uploaded successfully."}
 
-@app.post("/parse/")
+@app.post("/api/parse/")
 async def parse():
     # Replace this with the function you want to trigger
     if not app.state.last_uploaded_filename:
@@ -50,12 +50,12 @@ async def parse():
     app.state.last_uploaded_filename = None
     return JSONResponse(content=result)
 
-@app.post("/reset/")
+@app.post("/api/reset/")
 async def reset():
     app.state.last_uploaded_filename = None
     return {"message": "State reset successfully."}
 
-@app.get("/download_optimized_bom/")
+@app.get("/api/download_optimized_bom/")
 async def download_optimized_bom():
     optimized_bom = getattr(app.state, "optimized_bom", None)
     if not optimized_bom or not os.path.isfile(optimized_bom):
@@ -66,6 +66,11 @@ async def download_optimized_bom():
         filename=filename,
         media_type="application/octet-stream"
     )
+@app.get("/api/poll/")
+async def poll():
+    optimized_bom = getattr(app.state, "optimized_bom", None)
+    is_ready = bool(optimized_bom and os.path.isfile(optimized_bom))
+    return {"ready": is_ready}
 
 
 if __name__ == "__main__":
