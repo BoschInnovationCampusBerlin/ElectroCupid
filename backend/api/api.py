@@ -66,6 +66,11 @@ async def download_optimized_bom():
         filename=filename,
         media_type="application/octet-stream"
     )
+@app.get("/api/poll/")
+async def poll():
+    optimized_bom = getattr(app.state, "optimized_bom", None)
+    is_ready = bool(optimized_bom and os.path.isfile(optimized_bom))
+    return {"ready": is_ready}
 
 
 if __name__ == "__main__":
